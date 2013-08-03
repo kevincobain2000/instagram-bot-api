@@ -40,6 +40,7 @@ Contents instaConfig.js
 
   exports.client_id = 'XXXXXXXXXX';
   exports.client_secret = 'XXXXXXXXX';
+  exports.redirect_uri = 'yoururl.com/handleauth'
 
 
 Install the dependencies
