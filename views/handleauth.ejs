@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+        <script src="/javascripts/jquery.tagsinput.js"></script> 
+        <link rel="stylesheet" type="text/css" href="/stylesheets/jquery.tagsinput.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="content/css/bootmetro-icons.css"/>
+        <link rel="stylesheet" type="text/css" href="content/css/bootmetro.css"/>
+        <!--  <link rel="stylesheet" type="text/css" href="content/css/bootmetro-responsive.css"/> -->
+        <link rel="stylesheet" type="text/css" href="content/css/boot_tetro.css"/>
+       
+        <script type="text/javascript" src="scripts/google-code-prettify/prettify.js"></script>
+        <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="scripts/underscore.js"></script>
+        
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script> 
+        
+        <title>Instagram Bot</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1>Instagram Bot</h1>
+            <div class="row-fluid">
+                <div class="span12">
+                    <input name="tags" id="tags" value="japan,japanese,sushi, kawaii, ohishi,cute,ねこ, 日本,かわいい,まんが,manga,anime,bored,me,asian"/>
+                    <button class="btn btn-info btn-block" id="startBot">
+                        <i class="icon icon-arrow-18"></i> 
+                        Done
+                    </button>
+                </div>             
+            </div>
+            <div class="row-fluid" id="progress">
+            </div>
+                
+            </div>             
+        </div>
+        
+        <script>
+//            var socket = io.connect(window.location.href.split( '/' )[2]);
+              $('#tags').tagsInput({
+                  'height':'100%',
+                  'width':'100%',
+                  'interactive':true,
+                  'defaultText':'add a tag, hit return',
+                  'removeWithBackspace' : true,
+                  'placeholderColor' : '#666666'
+              });
+
+            $("#startBot").on('click',function(){
+                
+                tags = $("#tags").val();
+                tags = tags.split(",");
+                console.log(tags);
+                for (tag in tags){
+                    doPostForLike(tags[tag]);
+                }
+                
+                
+
+            });
+            
+            function doPostForLike(tag){
+                $.ajax({
+                    type: 'POST',
+                    url: './handleauth',  
+                    data: {
+                        'tag': tag
+                    },
+                    success: function(datas){
+                        console.log(datas);
+                        for (var item in datas) {
+                            data = datas[item];
+                            photoThumb = '<div class="media hero-unit">'
+                                    + '<a class="pull-left" target="_blank" href="'+data['link']+'"><img class="img-polaroid" src="'+data['images']['thumbnail']['url']+'"></a>'
+                                    +'<div class="media-body"> '
+//                                    +JSON.stringify(data)
+                                    + '<a target="_blank" href="'+data['link']+'">'+data['link']+'</a>'
+                                    +'<p>'
+                                    + '<br>'
+                                    + 'Likes: ' + data['likes']['count']
+                                    +'<br>'
+                                    + 'You have Liked: '+ data['user_has_liked']
+                                    + '<br>'
+                                    + 'Tags: '+ data['tags']
+                                    +'</p>'
+                                    +'</div>'
+                                    + '</div>'
+
+                            $("#progress").append(photoThumb);
+            
+                        }
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
