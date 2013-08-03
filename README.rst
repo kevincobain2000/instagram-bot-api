@@ -6,7 +6,7 @@ Bot is working but the interface is still work in progress. This is work in prog
 Demo
 ----
 
-Here should be the youtube link
+http://youtu.be/itOYPnIsMVQ
 
 Description
 -----------
