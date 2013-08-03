@@ -1,22 +1,16 @@
 Instagram Bot
 -------------
 
-Bot is working but the interface is still work in progress. This is work in progress
+Instagram auto like bot with web interface using nodejs, jquery, javascript and instagram api. 
 
-Demo
-----
-
-http://youtu.be/itOYPnIsMVQ
-
-Description
------------
-
-Instagram auto like bot with web interface using nodejs, jquery, javascript and instagram api.
+`Demo <http://youtu.be/itOYPnIsMVQ>`_
+--------------------------------------
 
 Requirements
 ------------
 
 - nodejs
+- Instagram Developer keys
 
 Deploy
 ------
@@ -32,9 +26,11 @@ other instagram will ban that app. Even if your app is banned, register another 
   error_message: 'We\'ve taken extra measures to protect the Instagram API from abnormal activity. Since you have recently created your API application, please contact apidevelopers@instagram.com to receive whitelisting for a higher rate limit.',
   retry: [Function] }
 
-Add javascript files named ``instagram-bot-api/bot/instaConfig.js``
+**Step-0** Install nodejs.
 
-Contents instaConfig.js
+**Step-1** Add javascript files named ``instagram-bot-api/bot/instaConfig.js``
+
+**Step-2** Contents ``instaConfig.js``
 
 ::
 
@@ -43,9 +39,11 @@ Contents instaConfig.js
   exports.redirect_uri = 'yoururl.com/handleauth'
 
 
-Install the dependencies
+**Last** Install the dependencies
 
 ::
 
   npm install
   nodemon app.js
+
+**Start App** Go to your web browser and http://localhost:3000
