@@ -6,6 +6,10 @@ Instagram auto like bot with web interface using nodejs, jquery, javascript and 
 `Demo <http://youtu.be/itOYPnIsMVQ>`_
 --------------------------------------
 
+http://www8355ue.sakura.ne.jp:3005/
+
+http://youtu.be/itOYPnIsMVQ
+
 Requirements
 ------------
 
