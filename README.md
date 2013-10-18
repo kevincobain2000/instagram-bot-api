@@ -6,7 +6,7 @@ Bot is working but the interface is still work in progress. This is work in prog
 Demo
 ----
 
-http://www8355ue.sakura.ne.jp/handleauth
+www8355ue.sakura.ne.jp:3000/handleauth
 
 Description
 -----------
